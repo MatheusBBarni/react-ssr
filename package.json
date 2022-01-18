@@ -4,9 +4,13 @@
   "description": "Server side rendering project",
   "main": "index.js",
   "scripts": {
-    "dev:build:server": "webpack --config webpack.server.js"
+    "dev:server": "nodemon --watch build --exec \"node build/bundle.js\"",
+    "dev:build:server": "webpack --config webpack.server.js",
+    "dev:watch:server": "webpack --config webpack.server.js --watch",
+    "dev:build:client": "webpack --config webpack.client.js",
+    "dev:watch:client": "webpack --config webpack.client.js --watch"
   },
-  "author": "",
+  "author": "Matheus B. Barni <MatheusBBarni>",
   "license": "ISC",
   "dependencies": {
     "axios": "0.16.2",

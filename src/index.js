@@ -1,15 +1,30 @@
-const React = require("react");
-const renderToString = require("react-dom/server").renderToString;
-const express = require("express");
+import express from 'express'
+import React from 'react'
+import { renderToString } from 'react-dom/server'
 
-const Home = require("./client/components/Home").default;
+import Client from './client/client'
 
 const app = express();
 
-app.get("/", (_, res) => {
-  const content = renderToString(<Home />);
+app.use(express.static('public'))
 
-  res.send(content);
+app.get("/", (_, res) => {
+  const content = renderToString(<Client />);
+
+  const html = `
+    <html>
+      <head>
+      </head>
+      <body>
+        <div id="__NEMIXJS__">
+          ${content}
+        </div>
+        <script src="bundle.js"></script>
+      </body>
+    </html>
+  `
+
+  res.send(html);
 });
 
 app.listen(3000, () => {

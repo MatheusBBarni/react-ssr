@@ -1,11 +1,6 @@
 import React from "react";
+import ReactDOM from 'react-dom';
 
 import Home from "./components/Home";
 
-export default function Client() {
-  return (
-    <div className="client">
-      <Home />
-    </div>
-  )
-}
+ReactDOM.hydrate(<Home />, document.querySelector('#__NEMIXJS__'))
